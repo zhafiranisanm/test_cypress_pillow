@@ -1,0 +1,143 @@
+{
+  "stats": {
+    "suites": 1,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2020-12-17T23:05:18.526Z",
+    "end": "2020-12-17T23:05:29.563Z",
+    "duration": 11037,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "83d3af47-dd77-4a48-a9ce-c0abf46b7330",
+      "title": "",
+      "fullFile": "cypress/integration/purchase_pillow.js",
+      "file": "cypress/integration/purchase_pillow.js",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "098d57c1-ee20-47e7-8344-d42a1b693c69",
+          "title": "User Purchase Pillow",
+          "fullFile": "",
+          "file": "",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [
+            {
+              "title": "User successfully purchase pillow with highest promo value",
+              "fullTitle": "User Purchase Pillow User successfully purchase pillow with highest promo value",
+              "timedOut": null,
+              "duration": 3210,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var getIframeDocumentPayment = function getIframeDocumentPayment() {\n  return cy.get('iframe[id=\"snap-midtrans\"]').its('0.contentDocument').should('exist');\n};\nvar getIframeBodyPayment = function getIframeBodyPayment() {\n  // get the document\n  return getIframeDocumentPayment() // automatically retries until body is loaded\n  .its('body').should('not.be.undefined').then(cy.wrap);\n}; //user click button BUY NOW\n\ncy.get('.btn.buy').should('have.text', 'BUY NOW').click().get('.cart-checkout').should('have.text', 'CHECKOUT').click(); //interact with 1st iframe modals\ngetIframeBodyPayment().find('.text-button-main').should('have.text', 'Continue').click({\n  force: true\n});\ngetIframeBodyPayment().find('.list-content').eq(0).click({\n  force: true\n});\ngetIframeBodyPayment().find('input[name=\"cardnumber\"]').click({\n  force: true\n}).type(arr_payment[0].cardNumber);\ngetIframeBodyPayment().find('input[type=\"tel\"]').eq(1).should('have.attr', 'placeholder', 'MM / YY').click({\n  force: true\n}).type(arr_payment[0].expiryDate);\ngetIframeBodyPayment().find('input[type=\"tel\"]').eq(2).should('have.attr', 'placeholder', '123').click({\n  force: true\n}).type(arr_payment[0].cvvNumber); //assert selected promo\ngetIframeBodyPayment().find('input[name=\"promo\"]').eq(1).should('have.value', 'on');\ngetIframeBodyPayment().find('.checkbox.checkbox-left').children('label').eq(1).should('have.text', 'Potongan 10% - Demo Promo Engine- Rp 2,000');\ngetIframeBodyPayment().find('.text-button-main').should('have.text', 'Pay Now').click({\n  force: true\n});",
+              "err": {},
+              "uuid": "42286c97-44fc-4d0b-b125-ef22ffd5346c",
+              "parentUUID": "098d57c1-ee20-47e7-8344-d42a1b693c69",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "User successfully purchase pillow with lowest promo value",
+              "fullTitle": "User Purchase Pillow User successfully purchase pillow with lowest promo value",
+              "timedOut": null,
+              "duration": 3801,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var getIframeDocumentPayment = function getIframeDocumentPayment() {\n  return cy.get('iframe[id=\"snap-midtrans\"]').its('0.contentDocument').should('exist');\n};\nvar getIframeBodyPayment = function getIframeBodyPayment() {\n  // get the document\n  return getIframeDocumentPayment() // automatically retries until body is loaded\n  .its('body').should('not.be.undefined').then(cy.wrap);\n}; //user click button BUY NOW\n\ncy.get('.btn.buy').should('have.text', 'BUY NOW').click().get('.cart-checkout').should('have.text', 'CHECKOUT').click(); //interact with 1st iframe modals\ngetIframeBodyPayment().find('.text-button-main').should('have.text', 'Continue').click({\n  force: true\n});\ngetIframeBodyPayment().find('.list-content').eq(0).click({\n  force: true\n});\ngetIframeBodyPayment().find('input[name=\"cardnumber\"]').click({\n  force: true\n}).type(arr_payment[0].cardNumber);\ngetIframeBodyPayment().find('input[type=\"tel\"]').eq(1).should('have.attr', 'placeholder', 'MM / YY').click({\n  force: true\n}).type(arr_payment[0].expiryDate);\ngetIframeBodyPayment().find('input[type=\"tel\"]').eq(2).should('have.attr', 'placeholder', '123').click({\n  force: true\n}).type(arr_payment[0].cvvNumber);\ngetIframeBodyPayment().find('input[name=\"promo\"]').eq(0).click(); //assert selected promo\ngetIframeBodyPayment().find('input[name=\"promo\"]').eq(0).should('have.value', 'on');\ngetIframeBodyPayment().find('.checkbox.checkbox-left').children('label').eq(0).should('have.text', 'Potongan 10 Rupiah- Rp 10');\ngetIframeBodyPayment().find('.text-button-main').should('have.text', 'Pay Now').click({\n  force: true\n});",
+              "err": {},
+              "uuid": "b5abc383-7707-4ca2-907a-0f15807bead2",
+              "parentUUID": "098d57c1-ee20-47e7-8344-d42a1b693c69",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "User failed to purchase",
+              "fullTitle": "User Purchase Pillow User failed to purchase",
+              "timedOut": null,
+              "duration": 2749,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "var getIframeDocumentPayment = function getIframeDocumentPayment() {\n  return cy.get('iframe[id=\"snap-midtrans\"]').its('0.contentDocument').should('exist');\n};\nvar getIframeBodyPayment = function getIframeBodyPayment() {\n  // get the document\n  return getIframeDocumentPayment() // automatically retries until body is loaded\n  .its('body').should('not.be.undefined') // wraps \"body\" DOM element to allow\n  // chaining more Cypress commands, like \".find(...)\"\n  .then(cy.wrap);\n}; //user click button BUY NOW\n\ncy.get('.btn.buy').should('have.text', 'BUY NOW').click().get('.cart-checkout').should('have.text', 'CHECKOUT').click(); //interact with 1st iframe modals\ngetIframeBodyPayment().find('.text-button-main').should('have.text', 'Continue').click({\n  force: true\n});\ngetIframeBodyPayment().find('.list-content').eq(0).click({\n  force: true\n});\ngetIframeBodyPayment().find('input[name=\"cardnumber\"]').click({\n  force: true\n}).type(arr_payment[1].cardNumber);\ngetIframeBodyPayment().find('input[type=\"tel\"]').eq(1).should('have.attr', 'placeholder', 'MM / YY').click({\n  force: true\n}).type(arr_payment[1].expiryDate);\ngetIframeBodyPayment().find('input[type=\"tel\"]').eq(2).should('have.attr', 'placeholder', '123').click({\n  force: true\n}).type(arr_payment[1].cvvNumber); //assert selected promo\ngetIframeBodyPayment().find('input[name=\"promo\"]').eq(1).should('have.value', 'on');\ngetIframeBodyPayment().find('.text-button-main').should('have.text', 'Pay Now').click({\n  force: true\n}); //assert error display\ngetIframeBodyPayment().find('.input-group.col-xs-7.error').should('be.visible');",
+              "err": {},
+              "uuid": "831155aa-d0a6-4b98-b5fe-351cdcedb6a6",
+              "parentUUID": "098d57c1-ee20-47e7-8344-d42a1b693c69",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "42286c97-44fc-4d0b-b125-ef22ffd5346c",
+            "b5abc383-7707-4ca2-907a-0f15807bead2",
+            "831155aa-d0a6-4b98-b5fe-351cdcedb6a6"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 9760,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 2000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.0.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "6.2.1"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "cypress/results",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "5.1.0"
+    }
+  }
+}
